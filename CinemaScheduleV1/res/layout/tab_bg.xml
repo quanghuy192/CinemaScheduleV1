@@ -3,19 +3,23 @@
     android:id="@+id/tabsLayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/header"
+    android:background="@drawable/tabs_selected"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="17dp" >
 
     <ImageView
         android:id="@+id/tabsImage"
-        android:layout_width="41sp"
-        android:layout_height="41sp" />
+        android:layout_width="23sp"
+        android:layout_height="23sp" />
 
     <TextView
         android:id="@+id/tabsTitle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textColor="#FFFFFF"
+        android:textSize="7sp"
+        android:textStyle="bold" />
 
 </LinearLayout>
