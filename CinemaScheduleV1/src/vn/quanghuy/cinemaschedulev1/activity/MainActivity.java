@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
 		fragmentTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
 		View newMovieTab = createTab(this, R.layout.tab_bg, R.drawable.new_movie_32);
+		View curentMovieTab = createTab(this, R.layout.tab_bg, R.drawable.new_movie_32);
+		View cinemaTab = createTab(this, R.layout.tab_bg, R.drawable.new_movie_32);
 
 	}
 
