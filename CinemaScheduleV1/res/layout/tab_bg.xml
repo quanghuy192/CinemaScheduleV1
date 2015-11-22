@@ -6,11 +6,16 @@
     android:background="@drawable/header"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="10dip" >
+    android:padding="17dp" >
 
     <ImageView
         android:id="@+id/tabsImage"
         android:layout_width="41sp"
         android:layout_height="41sp" />
+
+    <TextView
+        android:id="@+id/tabsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
