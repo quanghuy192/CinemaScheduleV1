@@ -13,18 +13,30 @@ public class MainActivity extends AppCompatActivity {
 
 	private FragmentTabHost fragmentTabHost;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.support.v7.app.AppCompatActivity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		// Init tabHost
 		fragmentTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
 		fragmentTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
+		// Create view for each tab
+		// @param1 : context
+		// @param2 : layout to load layout
+		// @param3 : image resource for tab
+		// @param4 : set title for tab
 		View newMovieTab = createTab(this, R.layout.tab_bg, R.drawable.new_movie_32, "Phim sắp chiếu");
 		View curentMovieTab = createTab(this, R.layout.tab_bg, R.drawable.current_movie32, "Phim đang chiếu");
 		View cinemaTab = createTab(this, R.layout.tab_bg, R.drawable.cinema32, "Rạp");
 
+		// Add tab
 		fragmentTabHost.addTab(fragmentTabHost.newTabSpec("New").setIndicator(newMovieTab), NewMovieFragment.class,
 				null);
 		fragmentTabHost.addTab(fragmentTabHost.newTabSpec("Current").setIndicator(curentMovieTab),
@@ -34,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
 	}
 
+	// Method to create View for tab
 	private View createTab(Context context, int idLayout, int idImage, String title) {
 		View view = LayoutInflater.from(context).inflate(idLayout, null);
 		ImageView imageView = (ImageView) view.findViewById(R.id.tabsImage);
