@@ -25,7 +25,6 @@ public class CurrentMovieFragment extends Fragment {
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			HtmlParser htmlParser = new HtmlParser();
-			htmlParser.setUrlSource("http://lichphim.vn/fbapp/lichchieu");
 			htmlParser.getMovieList();
 			return null;
 		}

@@ -1,6 +1,7 @@
 package vn.quanghuy.cinemaschedulev1.utilities;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,24 +27,19 @@ public class HtmlParser {
 	private List<Movie> movieList;
 
 	public HtmlParser() {
-		/*super();
-		this.url = url;
+		super();
 
-		// Throw error if link == null
-		// Can't create stream to get data
-		if (url == null) {
-			throw new AssertionError();
-		}
-		// Get default url to load data current movie
+		// Get default url to
+		// load data current movie
 		setUrlSource(CURRENT_MOVIE_URL);
-		Log.i("URL", url);*/
 
 	}
 
-	public void setUrlSource(String url) {
+	void setUrlSource(String url) {
 		this.url = url;
 		try {
-			document = Jsoup.connect(url).get();
+			Log.i("URL", url);
+			document = Jsoup.parse(new URL(url).openStream(), "UTF-8", "/");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,7 +52,8 @@ public class HtmlParser {
 	public List<Movie> getMovieList() {
 		movieList = new ArrayList<Movie>();
 		Movie movie = null;
-		Elements elementItems = document.select("div[class=item_phimdachieu]");
+		Elements elementItems = document.select("div[class=center]");
+		Log.i("SIZE", "" + elementItems.text());
 		// Test by logcat
 		Log.i("SIZE", "" + elementItems.size());
 		for (Element e : elementItems) {
