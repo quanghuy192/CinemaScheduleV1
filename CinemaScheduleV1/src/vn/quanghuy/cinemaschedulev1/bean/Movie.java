@@ -9,12 +9,14 @@ public class Movie {
 	private String type;
 	private Bitmap icon;
 	private String linkDetail;
-	private short time;
+	private String time;
 	private String director;
 	private String actors;
-	private float imdbPoint;
+	private String imdbPoint;
 	private String dayStart;
 	private String content;
+	
+	// Not use
 	private short likes;
 	private short views;
 
@@ -54,11 +56,11 @@ public class Movie {
 		this.linkDetail = linkDetail;
 	}
 
-	public short getTime() {
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(short time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 
@@ -78,11 +80,11 @@ public class Movie {
 		this.actors = actors;
 	}
 
-	public float getImdbPoint() {
+	public String getImdbPoint() {
 		return imdbPoint;
 	}
 
-	public void setImdbPoint(float imdbPoint) {
+	public void setImdbPoint(String imdbPoint) {
 		this.imdbPoint = imdbPoint;
 	}
 
