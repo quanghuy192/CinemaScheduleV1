@@ -14,6 +14,7 @@ import org.jsoup.select.Elements;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
+import vn.quanghuy.cinemaschedulev1.activity.MainActivity;
 import vn.quanghuy.cinemaschedulev1.bean.Movie;
 
 public class HtmlParser {
@@ -22,6 +23,12 @@ public class HtmlParser {
 	private static final String CURRENT_MOVIE_URL = "http://lichphim.vn/fbapp/lichchieu";
 	private static final String NEW_MOVIE_URL = "http://lichphim.vn/fbapp/sapchieu";
 	private static final String CINEMA_URL = "http://lichphim.vn/fbapp/rapchieu";
+
+	// to know the tab is selected
+	private short CURRENT_MOVIE_ID = 0;
+
+	// current index of tab
+	private static int idCurrentTab;
 
 	private Document document;
 	private String url;
@@ -55,6 +62,12 @@ public class HtmlParser {
 	public List<Movie> getMovieList() {
 		movieList = new ArrayList<Movie>();
 		Movie movie = null;
+		idCurrentTab = MainActivity.getIdTabSelected();
+		if (idCurrentTab == CURRENT_MOVIE_ID) {
+			setUrlSource(CURRENT_MOVIE_URL);
+		} else {
+			setUrlSource(NEW_MOVIE_URL);
+		}
 
 		Elements elementItems = document.select("div[class=img_item_phim]");
 
@@ -85,7 +98,7 @@ public class HtmlParser {
 				solveTitleContent(titleContent, movie);
 			}
 			Log.i("ToString", movie.toString());
-			
+
 			movieList.add(movie);
 		}
 		return movieList;
@@ -106,17 +119,48 @@ public class HtmlParser {
 		// Filter span tag
 		Elements elements = doc.select("span");
 		int lenght = elements.size();
-		for (int i = 0; i < lenght; i++) {
-			movie.setTitle(elements.get(0).text());
-			movie.setType(elements.get(2).text());
-			movie.setTime(elements.get(4).text());
-			movie.setDirector((elements.get(6).text()));
-			movie.setActors((elements.get(8).text()));
-			movie.setImdbPoint((elements.get(10).text()));
-			movie.setDayStart((elements.get(12).text()));
-			movie.setContent((elements.get(13).text()));
+
+		if (idCurrentTab == CURRENT_MOVIE_ID) {
+			for (int i = 0; i < lenght; i++) {
+				movie.setTitle(elements.get(0).text());
+				movie.setType(elements.get(2).text());
+				movie.setTime(elements.get(4).text());
+				movie.setDirector(elements.get(6).text());
+				movie.setActors(elements.get(8).text());
+				movie.setImdbPoint(elements.get(10).text());
+				movie.setDayStart(convertDay(elements.get(12).text()));
+				movie.setContent(elements.get(13).text());
+			}
+		} else {
+			for (int i = 0; i < lenght; i++) {
+				movie.setTitle(elements.get(0).text());
+				movie.setType(elements.get(2).text());
+				movie.setTime(elements.get(4).text());
+				movie.setDirector(elements.get(6).text());
+				movie.setActors(elements.get(8).text());
+				movie.setDayStart(convertDay(elements.get(10).text()));
+				movie.setContent(elements.get(11).text());
+			}
 		}
 
+	}
+	
+	public void getCinemaList(){
+		
+	}
+
+	// Convert day type yyyy-mm-dd to dd/mm/yyyy
+	private String convertDay(String day) {
+		StringBuilder builder = new StringBuilder();
+		String[] partOfString = day.split("-");
+		int size = partOfString.length;
+		for (int i = size - 1; i >= 0; i--) {
+			builder.append(partOfString[i]);
+			builder.append("/");
+		}
+		String dayAfterConvert = new String(builder);
+		dayAfterConvert = dayAfterConvert.substring(0, dayAfterConvert.length() - 1);
+		return dayAfterConvert;
 	}
 
 }

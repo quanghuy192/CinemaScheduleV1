@@ -7,11 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
 	private FragmentTabHost fragmentTabHost;
+
+	// Default the first tab always is selected
+	private static int idTabSelected = 0;
 
 	/*
 	 * (non-Javadoc)
@@ -37,13 +41,28 @@ public class MainActivity extends AppCompatActivity {
 		View cinemaTab = createTab(this, R.layout.tab_bg, R.drawable.cinema32, "Rạp");
 
 		// Add tab
-		fragmentTabHost.addTab(fragmentTabHost.newTabSpec("Current").setIndicator(curentMovieTab),
-				CurrentMovieFragment.class, null);
-		fragmentTabHost.addTab(fragmentTabHost.newTabSpec("New").setIndicator(newMovieTab), NewMovieFragment.class,
+		fragmentTabHost.addTab(fragmentTabHost.newTabSpec("Current").setIndicator(curentMovieTab), MovieFragment.class,
 				null);
+		fragmentTabHost.addTab(fragmentTabHost.newTabSpec("New").setIndicator(newMovieTab), MovieFragment.class, null);
 		fragmentTabHost.addTab(fragmentTabHost.newTabSpec("Cinema").setIndicator(cinemaTab), CinemaFragment.class,
 				null);
 
+		fragmentTabHost.setOnTabChangedListener(new OnTabChangeListener() {
+
+			@Override
+			public void onTabChanged(String tabId) {
+				// TODO Auto-generated method stub
+				int i = fragmentTabHost.getCurrentTab();
+				
+				// id tab = index of tab 
+				idTabSelected = i;
+			}
+		});
+
+	}
+
+	public static int getIdTabSelected() {
+		return idTabSelected;
 	}
 
 	// Method to create View for tab
@@ -51,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 		View view = LayoutInflater.from(context).inflate(idLayout, null);
 		ImageView imageView = (ImageView) view.findViewById(R.id.tabsImage);
 		TextView textView = (TextView) view.findViewById(R.id.tabsTitle);
-		
+
 		// Set resource
 		imageView.setImageResource(idImage);
 		textView.setText(title);

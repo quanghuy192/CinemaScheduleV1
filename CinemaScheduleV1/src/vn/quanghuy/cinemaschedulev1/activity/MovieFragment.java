@@ -15,7 +15,7 @@ import vn.quanghuy.cinemaschedulev1.adapter.MovieAdapter;
 import vn.quanghuy.cinemaschedulev1.bean.Movie;
 import vn.quanghuy.cinemaschedulev1.utilities.HtmlParser;
 
-public class CurrentMovieFragment extends Fragment {
+public class MovieFragment extends Fragment {
 
 	private List<Movie> movieList;
 	private ListView lvCurrent;
@@ -25,9 +25,10 @@ public class CurrentMovieFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View view = inflater.inflate(R.layout.current_movie_layout, null);
+		View view = inflater.inflate(R.layout.movie_layout, null);
 		lvCurrent = (ListView) view.findViewById(R.id.lvCurrent);
 		progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+
 		new CinemaAsynTask().execute();
 		return view;
 	}
