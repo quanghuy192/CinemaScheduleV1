@@ -3,23 +3,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-    <Spinner
-        android:id="@+id/cinemaSpinner"
-        android:layout_width="0dp"
+
+    <Button
+        android:id="@+id/btMap"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="70"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="7dp"
-        />
-    
-    <Spinner
-        android:id="@+id/cinemaSchedule"
-        android:layout_width="0dp"
+        android:layout_centerInParent="true"
+        android:layout_margin="13dp"
+        android:background="@drawable/btn_selected"
+        android:text="Xem bản đồ"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btInfor"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="30"
-        />
-    
+        android:layout_below="@id/btMap"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_selected"
+        android:text="Xem thông tin rạp"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btMovie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btMap"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_selected"
+        android:text="Xem phim đang chiếu"
+        android:textColor="@android:color/white" />
+
+    <LinearLayout
+        android:id="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btMovie"
+        android:layout_marginBottom="37dp"
+        android:orientation="horizontal" >
+
+        <Spinner
+            android:id="@+id/cinemaSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="65" />
+
+        <EditText
+            android:id="@+id/cinemaInput"
+            android:layout_width="0dp"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"
+            android:layout_weight="30"
+            android:enabled="true" />
+
+        <ImageView
+            android:id="@+id/cinemaImg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:src="@drawable/calender_48" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/linear1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="19dp"
+        android:text="Chọn Rạp"
+        android:textColor="#00CCCC"
+        android:textSize="29sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>
