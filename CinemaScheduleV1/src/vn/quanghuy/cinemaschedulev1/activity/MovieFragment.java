@@ -56,7 +56,7 @@ public class MovieFragment extends Fragment {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			progressBar.setVisibility(View.GONE);
-			adapter = new MovieAdapter(getActivity(), R.layout.item_cinema, movieList);
+			adapter = new MovieAdapter(getActivity(), R.layout.item_movie, movieList);
 			lvCurrent.setAdapter(adapter);
 		}
 

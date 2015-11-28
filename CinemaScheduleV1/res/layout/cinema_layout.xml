@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/btMovie"
-        android:layout_marginBottom="37dp"
+        android:layout_marginBottom="31dp"
         android:orientation="horizontal" >
 
         <Spinner
@@ -54,6 +54,7 @@
             android:layout_width="0dp"
             android:textColor="@android:color/black"
             android:layout_height="wrap_content"
+            android:editable="false" 
             android:layout_weight="30"
             android:enabled="true" />
 
@@ -64,16 +65,5 @@
             android:layout_weight="5"
             android:src="@drawable/calender_48" />
     </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/linear1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="19dp"
-        android:text="Chọn Rạp"
-        android:textColor="#00CCCC"
-        android:textSize="29sp"
-        android:textStyle="bold" />
 
 </RelativeLayout>
